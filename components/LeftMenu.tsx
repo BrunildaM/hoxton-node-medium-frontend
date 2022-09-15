@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./LeftMenu.css";
 
 function LeftMenu() {
@@ -5,22 +6,25 @@ function LeftMenu() {
     <div className="left-menu">
       <nav className="left-menu-nav">
         <ul className="left-menu_list">
-          <li className="left-menu_list-li">
-            <img
-              className="left-menu_list-li-icon"
-              src="https://cdn-icons-png.flaticon.com/128/5968/5968885.png"
-              alt="medium-logo"
-              width={40}
-            />
-          </li>
-          <li className="left-menu_list-li">
-            <img
-              className="left-menu_list-li-icon"
-              src="https://cdn-icons-png.flaticon.com/128/25/25694.png"
-              alt="home"
-              width={40}
-            />
-          </li>
+          <Link to="/">
+            <li className="left-menu_list-li">
+              <img
+                className="left-menu_list-li-icon"
+                src="https://cdn-icons-png.flaticon.com/128/5968/5968885.png"
+                alt="medium-logo"
+                width={40}
+              />
+            </li>
+
+            <li className="left-menu_list-li">
+              <img
+                className="left-menu_list-li-icon"
+                src="https://cdn-icons-png.flaticon.com/128/25/25694.png"
+                alt="home"
+                width={40}
+              />
+            </li>
+          </Link>
           <li className="left-menu_list-li">
             <img
               className="left-menu_list-li-icon"

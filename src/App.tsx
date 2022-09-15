@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react'
 
 import './App.css'
 import LeftMenu from '../components/LeftMenu'
+import {Home}  from '../pages/Home'
+import {BlogDetails}  from '../pages/BlogDetails'
+import {NotFound}  from '../pages/NotFound'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 
-type Blog = {
+
+
+export type Blog = {
   id: number       
   title: string
   content:  string
@@ -23,7 +29,9 @@ type User = {
 
 function App() {
 const [blogs, setBlogs] = useState<Blog[]>([])
-const [users, setUsers] = useState<User[]>([])
+const [user, setUser] = useState<User | null>(null)
+
+const navigate = useNavigate()
 
 useEffect(() => {
   fetch('http://localhost:4000/blogs')
@@ -32,28 +40,30 @@ useEffect(() => {
 }, [])
 
 
-useEffect(() => {
-  fetch('http://localhost:4000/users')
-  .then(res => res.json())
-  .then(usersFromDb => setUsers(usersFromDb))
-}, [])
+// useEffect(() => {
+//   fetch(`http://localhost:4000/users/${user?.id}`)
+//   .then(res => res.json())
+//   .then(userFromDb => setUser(userFromDb))
+// }, [user?.id])
+
+
 
   return (
     <div className="App">
      <LeftMenu />
-      <ul>
-        {
-          blogs.map(blog => (
-            <div>
-              <span>
-                <img src={blog.user.profilePhoto} alt={blog.user.userName} width={50} /></span>
-              <span>{blog.user.userName}</span>
-              <h1>{blog.title}</h1>
-              <h3>{blog.content}</h3>
-            </div>
-          ))
-        }
-      </ul>
+     <main>
+       <Routes>
+       <Route index element={<Navigate to="/home" />} />
+          <Route
+            path="/home"
+            element={<Home blogs={blogs}/>}
+          />
+           <Route path="/blogs/:id" element={<BlogDetails />} />
+           <Route path="*" element={<NotFound />} />
+       </Routes>
+     </main>
+     
+
      
     </div>
   )
