@@ -27,16 +27,32 @@ function BlogSection() {
           alt="clapping-hand"
           width={30}
         />
-        {blog.likes}
+        {blog.likes.length}
+        
       </button>
-      <button>
+     <div>
+     <button>
+        
         <img
           src="https://cdn-icons-png.flaticon.com/128/1947/1947247.png"
           alt="comment"
           width={30}
         />
-       {blog.comments}
+       
       </button>
+      <p>{blog.responds ? 
+        blog.responds.map((respond) => (
+          // <div>
+          <p>{respond.comment}</p>
+          // <p>{respond.user.userName}</p> 
+          // </div>
+        )) : ""
+      }</p>
+     </div>
+     
+     
+      
+     
 
       {/* all details of a blog including likes and comments */}
       {/* functions about creating a new comment and increassing the number of likes */}
@@ -46,3 +62,6 @@ function BlogSection() {
 }
 
 export default BlogSection;
+
+
+

@@ -15,8 +15,8 @@ export type Blog = {
   content:  string
   user: User 
   userId: number
-  likes:  number
-  comments: string[]
+  likes:  []
+  responds: Comment[]
 }
 
 type User = {
@@ -25,6 +25,13 @@ type User = {
   email: string  
   profilePhoto: string
   blogs:  Blog[]
+}
+
+type Comment = {
+  id: number
+  comment: string
+  user: User
+
 }
 
 function App() {
